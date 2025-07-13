@@ -7,26 +7,24 @@ public class ArithmeticCalculator {
     private List<Double> results = new ArrayList<>();
     private double num1;
     private double num2;
-    private char operator;
+    private OperatorEnum operatorEnum;
     private double result;
 
     public double calculate() {
-        if (operator == '+') {
+        if (operatorEnum.operatorChar == '+') {
             result = num1 + num2;
-        } else if (operator == '-') {
+        } else if (operatorEnum.operatorChar == '-') {
             result = num1 - num2;
-        } else if (operator == '*') {
+        } else if (operatorEnum.operatorChar == '*') {
             result = num1 * num2;
-        } else if (operator == '/') {
+        } else if (operatorEnum.operatorChar == '/') {
             if (num2 == 0) {
                 System.out.println("0으로 나눌 수 없습니다.");
-                //result = 0.0;
                 return result;
             }
             result = num1 / num2;
         } else {
             System.out.println("올바른 연산자가 아닙니다.");
-            //result = 0.0;
             return result;
         }
         return result;
@@ -38,11 +36,18 @@ public class ArithmeticCalculator {
     }
 
     public void setOperator(char operator) {
-        this.operator = operator;
+        OperatorEnum foundOperator = null;
+        for (OperatorEnum op : OperatorEnum.values()) {
+            if (op.getOperatorChar() == operator) {
+                foundOperator = op;
+                break;
+            }
+        }
+        this.operatorEnum = foundOperator;
     }
 
     public boolean isValidOperator() {
-        return operator == '+' || operator == '-' || operator == '*' || operator == '/';
+        return this.operatorEnum != null;
     }
 
     public List<Double> getResults() {
@@ -71,7 +76,10 @@ public class ArithmeticCalculator {
     }
 
     public char getOperator() {
-        return operator;
+        if (operatorEnum != null) {
+            return operatorEnum.getOperatorChar();
+        }
+        throw new IllegalStateException("연산자가 설정되지 않았습니다.");
     }
 
     public double getResult() {

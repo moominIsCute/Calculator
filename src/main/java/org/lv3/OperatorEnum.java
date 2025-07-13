@@ -9,7 +9,7 @@ public enum OperatorEnum {
         this.operatorChar = operatorChar;
     }
 
-    char getOperatorChar() {
+    public char getOperatorChar() {
         return operatorChar;
     }
 }

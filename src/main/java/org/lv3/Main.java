@@ -2,6 +2,8 @@ package org.lv3;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
 
 public class Main {
 
@@ -59,9 +61,17 @@ public class Main {
             double result = arithmeticCalculator.calculate();
             arithmeticCalculator.setResults(result);
 
+
+            System.out.println("저장된 연산 결과들 중 Scanner로 입력받은 값보다 큰 결과값 들을 출력해보자");
+            double scNum = sc.nextDouble();
+            System.out.println(arithmeticCalculator.getResults().stream().filter(n-> scNum < n).collect(Collectors.toList()));
+            arithmeticCalculator.getResults().stream().filter(n-> scNum < n).collect(Collectors.toList());
+
+
+
             System.out.println("저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제를 할까요? (yes 입력시 삭제 그외 속행) ");
             String delete = sc.nextLine();
-            //sc.nextLine();
+            sc.nextLine();
             if (delete.equalsIgnoreCase("yes")) {
                 arithmeticCalculator.removeResult();
                 System.out.println("현재 저장된 결과: " + arithmeticCalculator.getResults());

@@ -3,7 +3,7 @@ package org.lv2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculate {
+public class Calculator {
     private List<Double> results = new ArrayList<>();
     private double num1;
     private double num2;
@@ -32,7 +32,7 @@ public class Calculate {
         return result;
     }
 
-    public void setResults(double result){ //리스트에 저장 븐리
+    public void setResults(double result) { //리스트에 저장 븐리
         System.out.println("결과: " + result);
         results.add(result);
     }
